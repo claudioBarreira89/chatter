@@ -1,0 +1,90 @@
+{
+    "plugins": ["jsx-a11y", "react", "import", "jest"],
+    "extends": [
+        "airbnb",
+        "plugin:jsx-a11y/recommended",
+        "plugin:react/recommended",
+        "plugin:import/errors",
+        "plugin:import/warnings"
+    ],
+    "parser": "babel-eslint",
+    "rules": {
+        "arrow-body-style": 0,
+        "arrow-parens": 1,
+        "class-methods-use-this": 0,
+        "comma-dangle": [2, "never"],
+        "comma-style": 1,
+        "function-paren-newline": 1,
+        "implicit-arrow-linebreak": 1,
+        "import/named": 1,
+        "import/no-cycle": 0,
+        "import/no-extraneous-dependencies": 0,
+        "import/prefer-default-export": "off",
+        "indent": [1, 4, { "SwitchCase": 1 }],
+        "jsx-a11y/label-has-for": [
+            1,
+            {
+                "components": ["label"],
+                "required": {
+                    "some": ["id", "nesting"]
+                },
+                "allowChildren": true
+            }
+        ],
+        "jsx-a11y/label-has-associated-control": [
+            2,
+            {
+                "controlComponents": ["InputField"],
+                "depth": 3
+            }
+        ],
+        "lines-between-class-members": 1,
+        "max-len": 0,
+        "no-else-return": 1,
+        "no-multiple-empty-lines": 1,
+        "no-plusplus": 0,
+        "no-restricted-syntax": 1,
+        "no-underscore-dangle": 0,
+        "object-curly-newline": 1,
+        "operator-linebreak": 1,
+        "padded-blocks": 1,
+        "prefer-destructuring": [
+            "error",
+            {
+                "array": false,
+                "object": true
+            }
+        ],
+        "react/default-props-match-prop-types": 0,
+        "react/destructuring-assignment": 0,
+        "react/display-name": 0,
+        "react/forbid-prop-types": 0,
+        "react/jsx-closing-tag-location": 1,
+        "react/jsx-curly-brace-presence": 1,
+        "react/jsx-filename-extension": 0,
+        "react/jsx-indent": [2, 4],
+        "react/jsx-indent-props": [2, 4],
+        "react/jsx-one-expression-per-line": 0,
+        "react/jsx-tag-spacing": 1,
+        "react/jsx-wrap-multilines": 1,
+        "react/no-danger": 0,
+        "react/no-this-in-sfc": 0,
+        "react/prefer-stateless-function": 0,
+        "react/prop-types": 0,
+        "react/require-default-props": 0,
+        "strict": 0
+    },
+    "globals": {
+        "pca": true,
+        "gigya": true,
+        "describe": true,
+        "it": true,
+        "fetch": true,
+        "document": true,
+        "window": true,
+        "localStorage": true
+    },
+    "env": {
+        "jest/globals": true
+    }
+}
