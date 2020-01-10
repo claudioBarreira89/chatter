@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Alert } from 'react-native';
-
-// import Loader from './components/common/Loader';
-// import HooksExample from './components/HooksExample';
-
-// import { UserContext } from './contexts';
+import { Alert, KeyboardAvoidingView } from 'react-native';
+import Loader from './elements/Loader';
+import Chat from './components/Chat';
+import { UserContext } from './store/context';
 import { firebaseService } from './services';
 
 export default function App() {
@@ -13,26 +11,26 @@ export default function App() {
     useEffect(
         () => {
             firebaseService.signIn()
-                .then(({ userFire, error }) => {
-                    if (error) {
+                .then((data) => {
+                    if (data.error) {
                         Alert.alert('Something went wrong');
                         return;
                     }
-
-                    setUser(userFire);
+                    setUser(data.user);
                 });
         },
         []
     );
 
     if (!user) {
-        // return <Loader />;
-        return '';
+        return <Loader />;
     }
 
-    // return (
-    //     <UserContext.Provider value={user}>
-    //         <HooksExample />
-    //     </UserContext.Provider>
-    // );
+    return (
+        <UserContext.Provider value={user}>
+            <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={25}>
+                <Chat />
+            </KeyboardAvoidingView>
+        </UserContext.Provider>
+    );
 }

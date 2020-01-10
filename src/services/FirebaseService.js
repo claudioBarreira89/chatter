@@ -7,30 +7,31 @@ export default class FirebaseService {
     firestore = firebase.firestore();
 
     //     messageRef = this.firestore.collection(COLLECTIONS.MESSAGES);
+    messageRef = this.firestore.collection('messages');
 
-    //       async signIn() {
-    //           try {
-    //               const response = await this.auth.signInAnonymously();
-    //               return { user: response.user };
-    //           } catch (error) {
-    //               return { error };
-    //           }
-    //       }
+    async signIn() {
+        try {
+            const response = await this.auth.signInAnonymously();
+            return { user: response.user };
+        } catch (error) {
+            return { error };
+        }
+    }
 
-    //       async fetchMessages() {
-    //           const messages = await this.messageRef
-    //               .orderBy('created_at', 'desc')
-    //               .limit(10)
-    //               .get();
+    async fetchMessages() {
+        const messages = await this.messageRef
+            .orderBy('created_at', 'desc')
+            .limit(10)
+            .get();
 
-    //           return messages.docs;
-    //       }
+        return messages.docs;
+    }
 
-//   async createMessage({ message, uid }) {
-//       await this.messageRef.add({
-//           message,
-//           user_id: uid,
-//           created_at: new Date()
-//       });
-//   }
+    async createMessage({ message, uid }) {
+        await this.messageRef.add({
+            message,
+            user_id: uid,
+            created_at: new Date()
+        });
+    }
 }
