@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Alert, KeyboardAvoidingView } from 'react-native';
+import { Alert } from 'react-native';
+import Routes from './routes';
 import Loader from './elements/Loader';
-import Chat from './components/Chat';
 import { UserContext } from './store/context';
 import { firebaseService } from './services';
 
@@ -28,9 +28,7 @@ export default function App() {
 
     return (
         <UserContext.Provider value={user}>
-            <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={25}>
-                <Chat />
-            </KeyboardAvoidingView>
+            <Routes />
         </UserContext.Provider>
     );
 }

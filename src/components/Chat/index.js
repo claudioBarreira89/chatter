@@ -1,4 +1,6 @@
-import React, { useEffect, useReducer, useContext } from 'react';
+import React, {
+    useEffect, useReducer, useContext
+} from 'react';
 import { FlatList, SafeAreaView, View } from 'react-native';
 import { firebaseService } from '../../services';
 import { UserContext } from '../../store/context';
@@ -27,7 +29,7 @@ export default function Chat() {
             <View style={styles.chatContainer}>
                 <View style={styles.messagesContainer}>
                     <FlatList
-                        contentContainerStyle={{ paddingTop: 10 }}
+                        contentContainerStyle={{ paddingVertical: 10 }}
                         inverted
                         data={messages}
                         keyExtractor={(item) => {

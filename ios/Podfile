@@ -42,6 +42,8 @@ target 'chatter' do
   # add pods for any other desired Firebase products
   # https://firebase.google.com/docs/ios/setup#available-pods
   pod 'RNFirebase', :path => '../node_modules/react-native-firebase/ios'
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+  pod 'react-native-safe-area-context', :path => '../node_modules/react-native-safe-area-context/react-native-safe-area-context.podspec'
 
   target 'chatterTests' do
     inherit! :search_paths
