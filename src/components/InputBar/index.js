@@ -1,37 +1,48 @@
-import React, { useCallback, useState, useContext } from 'react';
+import React, { Component } from 'react';
 import { View, TextInput } from 'react-native';
-import { firebaseService } from '../../services';
-import { UserContext } from '../../store/context';
 
 import Button from '../../elements/Button';
 import Loader from '../../elements/Loader';
 import styles from './styles';
 
-export default function Input() {
-    const { uid } = useContext(UserContext);
-    const [isLoading, setIsLoading] = useState(false);
-    const [message, setMessage] = useState('');
+export default class Input extends Component {
+    state = {
+        message: ''
+    }
 
-    const handlePress = useCallback(
-        () => {
-            setIsLoading(true);
-            firebaseService
-                .createMessage({ message, uid })
-                .then(() => {
-                    setIsLoading(false);
-                    setMessage('');
-                });
-        },
-        [message]
-    );
+    handlePress = () => {
+        const { message } = this.state;
+        const { onSubmit, uid } = this.props;
+        onSubmit(message, uid);
 
-    return (
-        <View style={styles.container}>
-            <View style={styles.inputContainer}>
-                <TextInput style={styles.input} value={message} onChangeText={setMessage} placeholder="Write you message" />
+        this.setState({
+            message: ''
+        });
+    }
+
+    handleChange = (value) => {
+        this.setState({
+            message: value
+        });
+    }
+
+    render() {
+        const { message } = this.state;
+        const { isLoading } = this.props;
+
+        return (
+            <View style={styles.container}>
+                <View style={styles.inputContainer}>
+                    <TextInput
+                        style={styles.input}
+                        value={message}
+                        onChangeText={this.handleChange}
+                        placeholder="Write you message"
+                    />
+                </View>
+                <Button text="Send" onPress={this.handlePress} />
+                {isLoading && <Loader />}
             </View>
-            <Button text="Send" onPress={handlePress} />
-            {isLoading && <Loader />}
-        </View>
-    );
+        );
+    }
 }

@@ -1,11 +1,10 @@
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-
-import ChatRoom from './views/ChatRoom';
+import Chat from './containers/ChatContainer';
 
 const MainNavigator = createStackNavigator({
     // Login: { screen: HomeScreen },
-    ChatRoom: { screen: ChatRoom }
+    Chat: { screen: Chat }
 });
 
 const Routes = createAppContainer(MainNavigator);

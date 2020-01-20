@@ -1,34 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Alert } from 'react-native';
-import Routes from './routes';
-import Loader from './elements/Loader';
-import { UserContext } from './store/context';
-import { firebaseService } from './services';
+import React from 'react';
+import { Provider } from 'react-redux';
+import store from './store';
+import App from './containers/AppContainer';
 
-export default function App() {
-    const [user, setUser] = useState(null);
-
-    useEffect(
-        () => {
-            firebaseService.signIn()
-                .then((data) => {
-                    if (data.error) {
-                        Alert.alert('Something went wrong');
-                        return;
-                    }
-                    setUser(data.user);
-                });
-        },
-        []
-    );
-
-    if (!user) {
-        return <Loader />;
-    }
-
+export default function () {
     return (
-        <UserContext.Provider value={user}>
-            <Routes />
-        </UserContext.Provider>
+        <Provider store={store}>
+            <App />
+        </Provider>
     );
 }
