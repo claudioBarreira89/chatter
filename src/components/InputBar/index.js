@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { View, TextInput } from 'react-native';
-
+import { View } from 'react-native';
 import Button from '../../elements/Button';
+import TextInput from '../../elements/TextInput';
 import Loader from '../../elements/Loader';
 import styles from './styles';
 
-export default class Input extends Component {
+
+export default class InputBar extends Component {
     state = {
         message: ''
     }
@@ -13,11 +14,14 @@ export default class Input extends Component {
     handlePress = () => {
         const { message } = this.state;
         const { onSubmit, uid } = this.props;
-        onSubmit(message, uid);
 
-        this.setState({
-            message: ''
-        });
+        if (message) {
+            onSubmit(message, uid);
+
+            this.setState({
+                message: ''
+            });
+        }
     }
 
     handleChange = (value) => {
@@ -33,12 +37,7 @@ export default class Input extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.inputContainer}>
-                    <TextInput
-                        style={styles.input}
-                        value={message}
-                        onChangeText={this.handleChange}
-                        placeholder="Write you message"
-                    />
+                    <TextInput text={message} onChangeText={this.handleChange} />
                 </View>
                 <Button text="Send" onPress={this.handlePress} />
                 {isLoading && <Loader />}

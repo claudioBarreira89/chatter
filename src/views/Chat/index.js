@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
     KeyboardAvoidingView, FlatList, SafeAreaView, View
 } from 'react-native';
-import InputBar from '../InputBar';
+import InputBar from '../../components/InputBar';
 import Message from '../../elements/Message';
 import styles from './styles';
 
@@ -15,13 +15,16 @@ export default class Chat extends Component {
     render() {
         const { user: { uid }, messages, createMessage } = this.props;
         return (
-            <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={100}>
-                <SafeAreaView>
+            <SafeAreaView style={styles.safeArea}>
+                <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={100}>
+
                     <View style={styles.chatContainer}>
                         <View style={styles.messagesContainer}>
                             {
                                 messages && (
                                     <FlatList
+                                        keyboardDismissMode="on-drag"
+                                        // keyboardDismissMode="interactive"
                                         contentContainerStyle={{ paddingVertical: 10 }}
                                         inverted
                                         data={messages}
@@ -45,9 +48,8 @@ export default class Chat extends Component {
                             <InputBar uid={uid} onSubmit={createMessage} />
                         </View>
                     </View>
-                </SafeAreaView>
-            </KeyboardAvoidingView>
-
+                </KeyboardAvoidingView>
+            </SafeAreaView>
         );
     }
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Routes from './routes';
+import Login from './containers/LoginContainer';
 import Loader from './elements/Loader';
 
 export default class App extends Component {
@@ -11,7 +12,7 @@ export default class App extends Component {
     render() {
         const { user } = this.props;
         if (!user.uid) {
-            return <Loader />;
+            return <Login />;
         }
         return <Routes />;
     }

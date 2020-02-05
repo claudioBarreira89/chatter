@@ -2,7 +2,11 @@ import { StyleSheet } from 'react-native';
 import { colors } from '../../theme';
 
 export default StyleSheet.create({
+    safeArea: {
+        backgroundColor: '#fff'
+    },
     chatContainer: {
+        backgroundColor: '#eee',
         top: 0
     },
     messagesContainer: {
@@ -16,7 +20,7 @@ export default StyleSheet.create({
         bottom: 0,
         paddingVertical: 10,
         paddingLeft: 20,
-
+        backgroundColor: '#fff',
         borderTopWidth: 1,
         borderTopColor: colors.GREY
     }
